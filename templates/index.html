@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Predict Student Performance | EduPredictor</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #ffffff);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #007acc;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, select, button {
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    input:focus, select:focus {
+      border-color: #007acc;
+      outline: none;
+    }
+
+    button {
+      background-color: #007acc;
+      color: white;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Student Performance Predictor</h1>
+  <form id="predictionForm">
+    <input type="text" name="name" placeholder="Student Name" required>
+    <input type="number" name="studyHours" placeholder="Study Hours per Day" min="0" required>
+    <input type="number" name="attendance" placeholder="Attendance %" min="0" max="100" required>
+    <input type="number" name="previousScore" placeholder="Previous Score (0-100)" min="0" max="100" required>
+    <input type="number" name="sleepHours" placeholder="Sleep Hours per Day" min="0" max="24" required>
+    <button type="submit">Predict Performance</button>
+  </form>
+
+  <div id="result"></div>
+</div>
+
+<script>
+  const form = document.getElementById('predictionForm');
+  const resultDiv = document.getElementById('result');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    // Call backend API (replace URL with your Flask/Django endpoint)
+    try {
+      const response = await fetch('http://localhost:5000/predict', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+      resultDiv.textContent = `Predicted Performance: ${result.prediction}`;
+    } catch (err) {
+      resultDiv.textContent = 'Error connecting to backend!';
+      console.error(err);
+    }
+  });
+</script>
+
+</body>
+</html>
