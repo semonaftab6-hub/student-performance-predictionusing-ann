@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Login | EduPredictor</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #e0f7fa, #ffffff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .login-card {
+    background: white;
+    border-radius: 15px;
+    padding: 40px 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 360px;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+
+  .login-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  }
+
+  .login-card h1 {
+    color: #007acc;
+    margin-bottom: 25px;
+  }
+
+  .login-card input, .login-card select {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+
+  .login-card input:focus, .login-card select:focus {
+    outline: none;
+    border-color: #007acc;
+    box-shadow: 0 0 5px #007acc;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: #007acc;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .btn:hover {
+    background-color: #005fa3;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  }
+
+  .note {
+    font-size: 14px;
+    margin-top: 15px;
+    color: #555;
+  }
+</style>
+</head>
+<body>
+  <div class="login-card">
+    <h1>Welcome Back 👋</h1>
+
+    <form id="loginForm">
+      <input id="username" type="text" placeholder="Username" required>
+      <input id="password" type="password" placeholder="Password" required>
+
+      <label for="roleSelect" style="font-size:0.9rem;margin-top:8px">Select Role (for demo)</label>
+      <select id="roleSelect">
+        <option value="teacher">Teacher</option>
+        <option value="admin">Admin</option>
+        <option value="student">Student</option>
+      </select>
+
+      <button type="submit" class="btn">Login</button>
+    </form>
+
+    <p class="note">Use demo accounts: <br>
+      <b>teacher / teach123</b> • <b>admin / admin123</b> • <b>student / stud123</b>
+    </p>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const role = document.getElementById('roleSelect').value;
+
+      // Demo validation
+      if(
+        (role === 'teacher' && username === 'teacher' && password === 'teach123') ||
+        (role === 'admin' && username === 'admin' && password === 'admin123') ||
+        (role === 'student' && username === 'student' && password === 'stud123')
+      ){
+        localStorage.setItem("userRole", role);
+        alert("Login Successful!");
+        window.location.href = "index.html";
+      } else {
+        alert("Invalid credentials!");
+      }
+    });
+  </script>
+</body>
+</html>

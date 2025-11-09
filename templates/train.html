@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Model | EduPredictor</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h2>EduPredictor</h2>
+        <ul>
+            <li><a href="index.html">Manual Predict</a></li>
+            <li><a href="upload.html">CSV Predict</a></li>
+            <li><a href="train.html" class="active">Train Model</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#" id="logoutBtn">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Train Model Card -->
+    <div class="container">
+        <div class="card train-card">
+            <h2>Train ANN Model</h2>
+            <button id="trainBtn" class="btn">Start Training</button>
+            <div id="trainingStatus" style="margin-top:15px; font-weight:bold;"></div>
+            <canvas id="trainChart"></canvas>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

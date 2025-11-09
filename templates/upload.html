@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Prediction | EduPredictor</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h2>EduPredictor</h2>
+        <ul>
+            <li><a href="index.html">Manual Predict</a></li>
+            <li><a href="upload.html" class="active">CSV Predict</a></li>
+            <li><a href="train.html">Train Model</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#" id="logoutBtn">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- CSV Upload Form -->
+    <div class="container">
+        <div class="card csv-card">
+            <h2>CSV Batch Prediction</h2>
+            <input type="file" id="csvFile" accept=".csv">
+            <button id="uploadBtn" class="btn">Upload & Predict</button>
+            <p id="csvResults" class="result-text"></p>
+        </div>
+
+        <!-- Charts -->
+        <div class="card chart-card">
+            <h2>Predictions Overview</h2>
+            <canvas id="barChart"></canvas>
+            <canvas id="pieChart"></canvas>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
