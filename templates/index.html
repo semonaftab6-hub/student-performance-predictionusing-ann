@@ -1,48 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual Prediction | EduPredictor</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual Prediction | EduPredictor</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="login-body">
-    <!-- Navbar -->
-    <nav class="navbar">
-        <h2>🎓 EduPredictor</h2>
-        <ul>
-            <li><a href="index.html" class="active">Manual Predict</a></li>
-            <li><a href="upload.html">CSV Predict</a></li>
-            <li><a href="train.html">Train Model</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="#" id="logoutBtn">Logout</a></li>
-        </ul>
-    </nav>
+<body>
 
-    <!-- Manual Prediction Form -->
-    <div class="container">
-        <div class="card prediction-card">
-            <h2>Manual Student Prediction</h2>
-            <form id="predictionForm">
-                <input type="text" name="name" placeholder="Student Name" required>
-                <input type="number" name="studyHours" placeholder="Study Hours" min="0" required>
-                <input type="number" name="attendance" placeholder="Attendance %" min="0" max="100" required>
-                <input type="number" name="previousScore" placeholder="Previous Score (GPA)" step="0.01" min="0" max="10" required>
-                <input type="number" name="sleepHours" placeholder="Average Sleep Hours" min="0" max="24" required>
-                <button type="submit" class="btn">Predict</button>
-            </form>
-            <p id="manualResult" class="result-text"></p>
-        </div>
+<!-- Navbar -->
+<nav class="navbar">
+    <h2 class="logo">🎓 EduPredictor</h2>
+    <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="index.html" class="active">Manual Predict</a></li>
+        <li><a href="upload.html">CSV Predict</a></li>
+        <li><a href="train.html">Train Model</a></li>
+        <li><a href="login.html" id="logoutBtn">Logout</a></li>
+    </ul>
+</nav>
 
-        <!-- Charts -->
-        <div class="card chart-card">
-            <h2>Predictions Overview</h2>
-            <canvas id="barChart"></canvas>
-            <canvas id="pieChart"></canvas>
-        </div>
+<!-- Manual Prediction Form -->
+<div class="container">
+    <div class="card">
+        <h2>Manual Student Prediction</h2>
+        <form id="predictionForm">
+            <input type="text" name="name" placeholder="Student Name" required>
+            <input type="number" name="studyHours" placeholder="Study Hours" min="0" required>
+            <input type="number" name="attendance" placeholder="Attendance %" min="0" max="100" required>
+            <input type="number" name="previousScore" placeholder="Previous Score (GPA)" step="0.01" min="0" max="10" required>
+            <input type="number" name="sleepHours" placeholder="Average Sleep Hours" min="0" max="24" required>
+            <button type="submit">Predict</button>
+        </form>
+        <p id="manualResult" class="result-text"></p>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Charts -->
+    <div class="card">
+        <h2>Predictions Overview</h2>
+        <canvas id="barChart"></canvas>
+        <canvas id="pieChart"></canvas>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

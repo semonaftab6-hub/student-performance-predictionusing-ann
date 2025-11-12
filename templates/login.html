@@ -1,103 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Login | 🎓 EduPredictor</title>
-<link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | EduPredictor</title>
 <style>
   body {
     font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #e0f7fa, #ffffff);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    margin:0;
+    padding:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(135deg,#e0f7fa,#ffffff);
   }
 
-  .login-card {
+  .flip-card {
+    background-color: transparent;
+    width: 380px;
+    height: 480px;
+    perspective: 1000px;
+  }
+
+  .flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  .flip-card:hover .flip-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-front, .flip-back {
+    position: absolute;
+    width:100%;
+    height:100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding: 30px;
+    box-sizing: border-box;
+  }
+
+  .flip-front {
+    background: linear-gradient(135deg,#007acc,#00c6ff);
+    color:white;
+    text-align:center;
+  }
+
+  .flip-front h1 {
+    font-size:2rem;
+    margin-bottom:20px;
+  }
+
+  .flip-front p {
+    font-size:1rem;
+  }
+
+  .flip-back {
     background: white;
-    border-radius: 15px;
-    padding: 40px 30px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    width: 360px;
-    text-align: center;
-    transition: transform 0.3s;
+    transform: rotateY(180deg);
   }
 
-  .login-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-  }
-
-  .login-card h1 {
-    color: #007acc;
+  .flip-back h2 {
+    text-align:center;
+    color:#007acc;
     margin-bottom: 25px;
   }
 
-  .login-card input, .login-card select {
+  .flip-back form {
     width: 100%;
-    padding: 12px 15px;
-    margin: 10px 0;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 16px;
+    display:flex;
+    flex-direction: column;
+    gap:15px;
   }
 
-  .login-card input:focus, .login-card select:focus {
-    outline: none;
-    border-color: #007acc;
-    box-shadow: 0 0 5px #007acc;
+  .flip-back form .input-group {
+    display:flex;
+    flex-direction: column;
   }
 
-  .btn {
-    width: 100%;
-    padding: 12px;
-    margin-top: 15px;
-    background-color: #007acc;
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
+  .flip-back form .input-group label {
+    margin-bottom:5px;
+    font-weight:500;
+    color:#007acc;
+  }
+
+  .flip-back form .input-group input,
+  .flip-back form .input-group select {
+    padding:12px 15px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:15px;
     transition: all 0.3s;
   }
 
+  .flip-back form .input-group input:focus,
+  .flip-back form .input-group select:focus {
+    border-color:#007acc;
+    box-shadow:0 0 5px #007acc;
+    outline:none;
+  }
+
+  .btn {
+    width:100%;
+    padding:12px;
+    background-color:#007acc;
+    color:white;
+    font-size:16px;
+    font-weight:500;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    transition: background 0.3s;
+  }
+
   .btn:hover {
-    background-color: #005fa3;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    background-color:#005fa3;
   }
 
   .note {
-    font-size: 14px;
-    margin-top: 15px;
-    color: #555;
+    font-size:0.85rem;
+    margin-top:10px;
+    text-align:center;
+    color:#555;
+  }
+
+  @media(max-width:400px){
+    .flip-card { width: 90%; height: 450px; }
   }
 </style>
 </head>
 <body>
-  <div class="login-card">
-    <h1>Welcome Back 👋</h1>
+  <div class="flip-card">
+    <div class="flip-inner">
 
-    <form id="loginForm">
-      <input id="username" type="text" placeholder="Username" required>
-      <input id="password" type="password" placeholder="Password" required>
+      <!-- Front Side -->
+      <div class="flip-front">
+        <h1>🎓 Welcome!</h1>
+        <p>EduPredictor — Predict Student Performance</p>
+        <p>Hover to Login →</p>
+      </div>
 
-      <label for="roleSelect" style="font-size:0.9rem;margin-top:8px">Select Role (for demo)</label>
-      <select id="roleSelect">
-        <option value="teacher">Teacher</option>
-        <option value="admin">Admin</option>
-        <option value="student">Student</option>
-      </select>
+      <!-- Back Side -->
+      <div class="flip-back">
+        <h2>Login</h2>
+        <form id="loginForm">
+          <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username" required>
+          </div>
 
-      <button type="submit" class="btn">Login</button>
-    </form>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" required>
+          </div>
 
-    <p class="note">Use demo accounts: <br>
-      <b>teacher / teach123</b> • <b>admin / admin123</b> • <b>student / stud123</b>
-    </p>
+          <div class="input-group">
+            <label for="roleSelect">Select Role</label>
+            <select id="roleSelect" required>
+              <option value="" disabled selected>Choose role</option>
+              <option value="teacher">Teacher</option>
+              <option value="admin">Admin</option>
+              <option value="student">Student</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn">Login</button>
+        </form>
+        <p class="note">
+          Demo accounts: <br>
+          teacher/teach123 • admin/admin123 • student/stud123
+        </p>
+      </div>
+
+    </div>
   </div>
 
   <script>
@@ -107,17 +193,15 @@
       const password = document.getElementById('password').value;
       const role = document.getElementById('roleSelect').value;
 
-      // Demo validation
       if(
-        (role === 'teacher' && username === 'teacher' && password === 'teach123') ||
-        (role === 'admin' && username === 'admin' && password === 'admin123') ||
-        (role === 'student' && username === 'student' && password === 'stud123')
+        (role==='teacher' && username==='teacher' && password==='teach123') ||
+        (role==='admin' && username==='admin' && password==='admin123') ||
+        (role==='student' && username==='student' && password==='stud123')
       ){
-        localStorage.setItem("userRole", role);
-        alert("Login Successful!");
+        alert('✅ Login Successful! Redirecting...');
         window.location.href = "index.html";
       } else {
-        alert("Invalid credentials!");
+        alert('❌ Invalid credentials! Try again.');
       }
     });
   </script>
